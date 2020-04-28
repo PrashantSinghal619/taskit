@@ -3,12 +3,15 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import App from "./components/App";
 import configureStore from "./store/configureStore";
+import { PersistGate } from "redux-persist/integration/react";
 
-export const store = configureStore();
+const { store, persistor } = configureStore();
 
 render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
