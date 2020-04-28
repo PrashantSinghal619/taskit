@@ -5,11 +5,16 @@ import { Item, Button, Icon } from "semantic-ui-react";
 import { showOptions, hideOptions } from "../actions";
 import Options from "./Options";
 import "./TaskItem.scss";
+import moment from "moment";
 
 const TaskItem = ({ task, displayOptions, dispatch }) => {
   function handleClick() {
     !displayOptions ? dispatch(showOptions(task.id)) : dispatch(hideOptions());
   }
+
+  // Extract date and time of task creation from task id
+  const dateCreated = moment(task.id).format("DD MMM YYYY, hh:mm a");
+
   return (
     <Item className="task-item">
       <Item.Content>
@@ -19,7 +24,7 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
         <Item.Description className="task-assignee">
           {task.assignee}
         </Item.Description>
-        <Item.Extra className="task-created-date">{task.id}</Item.Extra>
+        <Item.Extra className="task-created-date">{dateCreated}</Item.Extra>
         <Item.Extra>
           <Button basic color="grey" onClick={() => handleClick()}>
             <Icon name="ellipsis vertical" />
