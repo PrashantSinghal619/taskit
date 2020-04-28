@@ -2,9 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Item, Button, Icon } from "semantic-ui-react";
-import { showOptions } from "../actions";
+import { showOptions, hideOptions } from "../actions";
+import Options from "./Options";
 
-const TaskItem = ({ task, dispatch }) => {
+const TaskItem = ({ task, displayOptions, dispatch }) => {
+  function handleClick() {
+    !displayOptions ? dispatch(showOptions(task.id)) : dispatch(hideOptions());
+  }
   return (
     <Item>
       <Item.Content>
@@ -16,24 +20,29 @@ const TaskItem = ({ task, dispatch }) => {
         </Item.Description>
         <Item.Extra className="task-created-date">{task.id}</Item.Extra>
         <Item.Extra>
-          <Button basic color="grey">
-            <Icon
-              name="ellipsis vertical"
-              onClick={() => dispatch(showOptions(task.id))}
-            />
+          <Button basic color="grey" onClick={() => handleClick()}>
+            <Icon name="ellipsis vertical" />
           </Button>
+          {displayOptions && <Options taskId={task.id} />}
         </Item.Extra>
       </Item.Content>
     </Item>
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    displayOptions: state.options.showOptions,
+  };
+};
+
 TaskItem.propTypes = {
   task: PropTypes.shape({
     id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    assignee: PropTypes.string.isRequired,
+    assignee: PropTypes.string,
   }),
+  displayOptions: PropTypes.bool.isRequired,
 };
 
-export default connect()(TaskItem);
+export default connect(mapStateToProps)(TaskItem);

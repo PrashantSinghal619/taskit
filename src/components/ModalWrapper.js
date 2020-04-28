@@ -4,36 +4,39 @@ import { addTask, editTask, deleteTask, hideModal } from "../actions";
 import { Modal, Header, Button } from "semantic-ui-react";
 import _ from "lodash";
 import { PropTypes } from "prop-types";
-import { store } from "../index.js";
 
 class ModalWrapper extends Component {
-  componentDidMount() {
-    console.log("modal actionType: ", this.props);
-    console.log("store: ", store.getState());
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      buttonText: "",
+      validationClass: "",
+    };
+    this.options = [
+      { key: "1", text: "John", value: "john" },
+      { key: "2", text: "Bill", value: "bill" },
+      { key: "3", text: "Donna", value: "donna" },
+    ];
   }
-  componentDidUpdate() {
-    console.log("modal actionType: ", this.props);
-    console.log("store: ", store.getState());
+  componentDidUpdate(prevProps) {
+    if (prevProps.actionType !== this.props.actionType) {
+      this.setState({
+        title:
+          this.props.actionType === "add"
+            ? "Add Task"
+            : this.props.actionType === "edit"
+            ? "Edit Task"
+            : "Delete Task",
+        buttonText:
+          this.props.actionType === "add"
+            ? "Create"
+            : this.props.actionType === "edit"
+            ? "Update"
+            : "Delete",
+      });
+    }
   }
-  title =
-    this.props.actionType === "add"
-      ? "Add Task"
-      : this.props.actionType === "edit"
-      ? "Edit Task"
-      : "Delete Task";
-
-  buttonText =
-    this.props.actionType === "add"
-      ? "Create"
-      : this.props.actionType === "edit"
-      ? "Update"
-      : "Delete";
-
-  options = [
-    { key: "1", text: "John", value: "john" },
-    { key: "2", text: "Bill", value: "bill" },
-    { key: "3", text: "Donna", value: "donna" },
-  ];
 
   inputRef = null;
   assigneeInputRef = null;
@@ -43,18 +46,30 @@ class ModalWrapper extends Component {
 
     if (this.props.actionType === "delete") {
       this.props.dispatch(deleteTask(this.props.itemId));
-    } else if (this.props.actionType === "add") {
-      this.props.dispatch(
-        addTask(this.inputRef.value, this.assigneeInputRef.value)
-      );
-    } else if (this.props.actionType === "edit") {
-      this.props.dispatch(
-        editTask(
-          this.props.itemId,
-          this.inputRef.value,
-          this.assigneeInputRef.value
-        )
-      );
+    } else {
+      // Text area validation against empty input
+      if (!this.inputRef.value.trim()) {
+        this.inputRef.style.border = "1px solid red";
+        this.setState((prevState) => ({
+          ...prevState,
+          validationClass: "error",
+        }));
+        return;
+      }
+
+      if (this.props.actionType === "add") {
+        this.props.dispatch(
+          addTask(this.inputRef.value, this.assigneeInputRef.value)
+        );
+      } else if (this.props.actionType === "edit") {
+        this.props.dispatch(
+          editTask(
+            this.props.itemId,
+            this.inputRef.value,
+            this.assigneeInputRef.value
+          )
+        );
+      }
     }
 
     this.props.dispatch(hideModal());
@@ -69,7 +84,7 @@ class ModalWrapper extends Component {
         >
           <Modal.Content>
             <Modal.Description>
-              <Header as="h5">{this.title}</Header>
+              <Header as="h5">{this.state.title}</Header>
               {this.props.actionType === "delete" && (
                 <p>Do you want to delete this Task</p>
               )}
@@ -81,7 +96,7 @@ class ModalWrapper extends Component {
                     placeholder="Enter task details"
                     ref={(node) => (this.inputRef = node)}
                     defaultValue={this.props.currentTaskText}
-                    required
+                    className={this.state.validationClass}
                   />
                   <label htmlFor="assignee-select">Assign To</label>
                   <select
@@ -104,7 +119,7 @@ class ModalWrapper extends Component {
           <Modal.Actions>
             <span onClick={() => this.props.dispatch(hideModal())}>Cancel</span>
             <Button primary onClick={(e) => this.handleSubmit(e)}>
-              {this.buttonText}
+              {this.state.buttonText}
             </Button>
           </Modal.Actions>
         </Modal>
@@ -118,7 +133,7 @@ const mapStateToProps = (state) => {
     currentTaskAssignee = "";
 
   if (state.modal.itemId) {
-    const taskIndex = _.findIndex(state.tasks, state.modal.itemId);
+    const taskIndex = _.findIndex(state.tasks, ["id", state.modal.itemId]);
     const task = state.tasks[taskIndex];
     currentTaskText = task.text;
     currentTaskAssignee = task.assignee;

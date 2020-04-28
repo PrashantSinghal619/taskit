@@ -13,8 +13,8 @@ class TaskList extends Component {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
       this.props.tasks.length !== 0 && this.setState({ isListEmpty: false });
     }
   }

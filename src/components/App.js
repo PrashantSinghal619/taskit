@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react";
+import { connect } from "react-redux";
 import "./App.scss";
 import TaskListHeader from "./TaskListHeader";
 import { Grid } from "semantic-ui-react";

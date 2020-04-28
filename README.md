@@ -9,5 +9,4 @@ CRUD any tasks and assign them to users.
 - TaskList
 - Task
 - Modal
-- TaskOptionsList
-- TaskOption
+- Options

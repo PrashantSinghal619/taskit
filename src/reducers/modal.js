@@ -18,6 +18,7 @@ const modal = (state = initialState, action) => {
       return {
         ...state,
         showModal: action.showModal,
+        itemId: "",
       };
     default:
       return state;

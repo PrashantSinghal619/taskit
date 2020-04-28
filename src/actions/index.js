@@ -43,5 +43,5 @@ export const showOptions = (itemId) => ({
 
 export const hideOptions = () => ({
   type: "HIDE_OPTIONS",
-  hideOptions: true,
+  showOptions: false,
 });
