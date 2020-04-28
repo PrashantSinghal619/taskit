@@ -1,8 +1,31 @@
 @import "../theming/typography.scss";
 
-.extra.task-created-date {
-  font-family: "Open Sans", sans-serif !important;
-  font-weight: $regular !important;
-  font-size: 14px !important;
-  color: $dark-gray !important;
+.task-item {
+  border-bottom: 2px solid $light-gray;
+  position: relative;
+  min-height: 100px;
+
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
+}
+
+.description {
+  text-transform: capitalize;
+}
+
+.extra {
+  &.task-created-date {
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: $regular !important;
+    font-size: 14px !important;
+    color: $dark-gray !important;
+    margin-top: 3px;
+  }
+  .ui.basic.grey.button {
+    box-shadow: none !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

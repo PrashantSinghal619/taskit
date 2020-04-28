@@ -4,6 +4,7 @@ import { addTask, editTask, deleteTask, hideModal } from "../actions";
 import { Modal, Header, Button } from "semantic-ui-react";
 import _ from "lodash";
 import { PropTypes } from "prop-types";
+import "./ModalWrapper.scss";
 
 class ModalWrapper extends Component {
   constructor(props) {
@@ -79,6 +80,7 @@ class ModalWrapper extends Component {
     return (
       <div className="ModalWrapper">
         <Modal
+          size="tiny"
           open={this.props.showModal}
           onClose={() => this.props.dispatch(this.hideModal())}
         >
@@ -89,7 +91,7 @@ class ModalWrapper extends Component {
                 <p className="description">Do you want to delete this task?</p>
               )}
               {this.props.actionType !== "delete" && (
-                <div>
+                <div className="field-group">
                   <label htmlFor="task-textarea">Task</label>
                   <textarea
                     id="task-textarea"

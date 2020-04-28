@@ -11,7 +11,7 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
     !displayOptions ? dispatch(showOptions(task.id)) : dispatch(hideOptions());
   }
   return (
-    <Item>
+    <Item className="task-item">
       <Item.Content>
         <Item.Header as="h3" className="task-text">
           {task.text}

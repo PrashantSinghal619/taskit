@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { List } from "semantic-ui-react";
 import { showModal, hideOptions } from "../actions";
 import { PropTypes } from "prop-types";
+import "./Options.scss";
 
 const Options = ({ taskId, dispatch }) => {
   function handleEdit() {
@@ -16,7 +17,7 @@ const Options = ({ taskId, dispatch }) => {
   }
 
   return (
-    <List>
+    <List className="options-list">
       <List.Item onClick={() => handleEdit()}>Edit Task</List.Item>
       <List.Item onClick={() => handleDelete()}>Delete Task</List.Item>
     </List>

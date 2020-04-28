@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Header } from "semantic-ui-react";
 import TaskItem from "./TaskItem";
 import _ from "lodash";
+import "./TaskList.scss";
 
 class TaskList extends Component {
   constructor(props) {

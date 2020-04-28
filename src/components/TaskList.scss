@@ -1,0 +1,16 @@
+@import "../theming/typography.scss";
+
+.task-list {
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.ui.header.empty-list-message {
+  align-self: center;
+  font-weight: $bold !important;
+  color: $dark-gray !important;
+}
