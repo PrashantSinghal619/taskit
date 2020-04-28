@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Item, Button, Icon } from "semantic-ui-react";
 import { showOptions, hideOptions } from "../actions";
 import Options from "./Options";
+import "./TaskItem.scss";
 
 const TaskItem = ({ task, displayOptions, dispatch }) => {
   function handleClick() {
@@ -12,7 +13,7 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
   return (
     <Item>
       <Item.Content>
-        <Item.Header as="h6" className="task-text">
+        <Item.Header as="h3" className="task-text">
           {task.text}
         </Item.Header>
         <Item.Description className="task-assignee">

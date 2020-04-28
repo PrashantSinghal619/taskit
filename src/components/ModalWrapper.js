@@ -84,9 +84,9 @@ class ModalWrapper extends Component {
         >
           <Modal.Content>
             <Modal.Description>
-              <Header as="h5">{this.state.title}</Header>
+              <Header as="h2">{this.state.title}</Header>
               {this.props.actionType === "delete" && (
-                <p>Do you want to delete this Task</p>
+                <p className="description">Do you want to delete this task?</p>
               )}
               {this.props.actionType !== "delete" && (
                 <div>
@@ -117,7 +117,12 @@ class ModalWrapper extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <span onClick={() => this.props.dispatch(hideModal())}>Cancel</span>
+            <span
+              className="button flat"
+              onClick={() => this.props.dispatch(hideModal())}
+            >
+              Cancel
+            </span>
             <Button primary onClick={(e) => this.handleSubmit(e)}>
               {this.state.buttonText}
             </Button>

@@ -1,0 +1,8 @@
+@import "../theming/typography.scss";
+
+.extra.task-created-date {
+  font-family: "Open Sans", sans-serif !important;
+  font-weight: $regular !important;
+  font-size: 14px !important;
+  color: $dark-gray !important;
+}

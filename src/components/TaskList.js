@@ -23,7 +23,7 @@ class TaskList extends Component {
     return (
       <div className="task-list">
         {this.state.isListEmpty && (
-          <Header as="h5" className="empty-list-message">
+          <Header as="h2" className="empty-list-message">
             No task added
           </Header>
         )}
