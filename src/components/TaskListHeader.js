@@ -13,7 +13,7 @@ const TaskListHeader = ({ dispatch }) => {
         basic
         color="blue"
         floated="right"
-        onClick={() => dispatch(showModal())}
+        onClick={() => dispatch(showModal("add", ""))}
       >
         New task
       </Button>

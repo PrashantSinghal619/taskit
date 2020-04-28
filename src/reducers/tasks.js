@@ -14,7 +14,7 @@ const tasks = (state = [], action) => {
       ];
 
     case "EDIT_TASK":
-      const taskIndex = _.findItemIndex(tasks, action.id);
+      const taskIndex = _.findIndex(tasks, action.id);
       tasks[taskIndex] = { ...tasks[taskIndex], text: action.text };
       if (tasks[taskIndex].assignee !== action.assignee) {
         tasks[taskIndex].assignee = action.assignee;

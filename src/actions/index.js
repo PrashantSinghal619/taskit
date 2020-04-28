@@ -16,8 +16,8 @@ export const editTask = (id, text, assignee) => ({
   assignee,
 });
 
-export const deleteChapter = (id) => ({
-  type: "DELETE_CHAPTER",
+export const deleteTask = (id) => ({
+  type: "DELETE_TASK",
   id,
 });
 
@@ -26,8 +26,8 @@ export const deleteChapter = (id) => ({
 export const showModal = (actionType, itemId) => ({
   type: "SHOW_MODAL",
   showModal: true,
-  actionType,
-  itemId,
+  actionType, // Type of task operation
+  itemId, // Preserves the id of the item being edited while modal is open
 });
 
 export const hideModal = () => ({

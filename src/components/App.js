@@ -1,8 +1,10 @@
 import React from "react";
+import { connect } from "react";
 import "./App.scss";
 import TaskListHeader from "./TaskListHeader";
 import { Grid } from "semantic-ui-react";
 import TaskList from "./TaskList";
+import ModalWrapper from "./ModalWrapper";
 
 // The top-level Taskit application component
 function App() {
@@ -24,6 +26,7 @@ function App() {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+            <ModalWrapper />
           </div>
         </Grid.Column>
         <Grid.Column mobile={16} computer={4}></Grid.Column>
@@ -32,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);

@@ -2,13 +2,6 @@
 
 CRUD any tasks and assign them to users.
 
-## Containers:
-
-- AddTask
-- EditTask
-- DeleteTask
-- AssignTask
-
 ## Components:
 
 - App
