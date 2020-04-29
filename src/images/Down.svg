@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Icons / ico_chevron_down</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="12 15 7 9.97384615 8.034375 9 12 13.04 15.965625 9 17 9.97384615"></polygon>
+    </defs>
+    <g id="Icons-/-ico_chevron_down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="ico_chevron_down" fill="#757575" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <rect id="bounds" x="0" y="0" width="24" height="24"></rect>
+    </g>
+</svg>

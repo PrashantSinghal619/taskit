@@ -1,3 +1,10 @@
+@import "../theming/typography.scss";
+
+.ui.modal > .actions {
+  background-color: transparent;
+  border: none;
+}
+
 p.description {
   text-transform: initial;
 }
@@ -7,4 +14,22 @@ p.description {
   flex-direction: column;
   min-height: 150px;
   justify-content: space-around;
+
+  .field-set {
+    & > * {
+      width: 100%;
+    }
+
+    textarea.error {
+      border: 1.5px solid $red;
+
+      &::after {
+        content: "This field is required to proceed";
+        font-family: "Open Sans", sans-serif !important;
+        font-weight: $semi-bold !important;
+        font-size: 10px !important;
+        color: $red !important;
+      }
+    }
+  }
 }

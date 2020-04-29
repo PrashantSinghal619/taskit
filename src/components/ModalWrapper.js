@@ -50,7 +50,6 @@ class ModalWrapper extends Component {
     } else {
       // Text area validation against empty input
       if (!this.inputRef.value.trim()) {
-        this.inputRef.style.border = "1px solid red";
         this.setState((prevState) => ({
           ...prevState,
           validationClass: "error",
@@ -80,7 +79,9 @@ class ModalWrapper extends Component {
     return (
       <div className="ModalWrapper">
         <Modal
-          size="tiny"
+          size="mini"
+          closeOnEscape={false}
+          closeOnDimmerClick={false}
           open={this.props.showModal}
           onClose={() => this.props.dispatch(this.hideModal())}
         >
@@ -92,28 +93,32 @@ class ModalWrapper extends Component {
               )}
               {this.props.actionType !== "delete" && (
                 <div className="field-group">
-                  <label htmlFor="task-textarea">Task</label>
-                  <textarea
-                    id="task-textarea"
-                    placeholder="Enter task details"
-                    ref={(node) => (this.inputRef = node)}
-                    defaultValue={this.props.currentTaskText}
-                    className={this.state.validationClass}
-                  />
-                  <label htmlFor="assignee-select">Assign To</label>
-                  <select
-                    name="assignee"
-                    id="assignee-select"
-                    defaultValue={this.props.currentTaskAssignee}
-                    ref={(node) => (this.assigneeInputRef = node)}
-                    placeholder="Assignee"
-                  >
-                    {_.map(this.options, (option) => (
-                      <option key={option.key} value={option.value}>
-                        {option.text}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="field-set">
+                    <label htmlFor="task-textarea">Task</label>
+                    <textarea
+                      id="task-textarea"
+                      placeholder="Enter task details"
+                      ref={(node) => (this.inputRef = node)}
+                      defaultValue={this.props.currentTaskText}
+                      className={this.state.validationClass}
+                    />
+                  </div>
+                  <div className="field-set">
+                    <label htmlFor="assignee-select">Assign To</label>
+                    <select
+                      name="assignee"
+                      id="assignee-select"
+                      defaultValue={this.props.currentTaskAssignee}
+                      ref={(node) => (this.assigneeInputRef = node)}
+                      placeholder="Assignee"
+                    >
+                      {_.map(this.options, (option) => (
+                        <option key={option.key} value={option.value}>
+                          {option.text}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               )}
             </Modal.Description>

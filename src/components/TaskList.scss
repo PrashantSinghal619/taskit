@@ -4,13 +4,16 @@
   min-height: 100vh;
   background-color: white;
   display: flex;
-  justify-content: center;
+  align-content: center;
   flex-direction: column;
   padding: 25px;
+  box-shadow: 0 0 10px 3px lighten($color: $medium-gray, $amount: 10%);
 }
 
 .ui.header.empty-list-message {
   align-self: center;
+  position: relative;
+  top: 200px;
   font-weight: $bold !important;
   color: $dark-gray !important;
 }

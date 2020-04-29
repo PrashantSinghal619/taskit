@@ -57,3 +57,23 @@ label {
 .tasks-wrapper {
   margin-top: 40px;
 }
+
+textarea,
+select {
+  border-radius: 3px;
+  background-color: $light-gray;
+  padding: 6px;
+}
+
+textarea {
+  resize: none;
+}
+
+select {
+  height: 30px;
+  appearance: none;
+  background-image: url("../images/Down.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: center;
+}

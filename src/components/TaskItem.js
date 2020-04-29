@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Item, Button, Icon } from "semantic-ui-react";
+import { Item, Button, Image } from "semantic-ui-react";
 import { showOptions, hideOptions } from "../actions";
 import Options from "./Options";
 import "./TaskItem.scss";
 import moment from "moment";
+import more from "../images/More.svg";
 
 const TaskItem = ({ task, displayOptions, dispatch }) => {
   function handleClick() {
@@ -27,7 +28,8 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
         <Item.Extra className="task-created-date">{dateCreated}</Item.Extra>
         <Item.Extra>
           <Button basic color="grey" onClick={() => handleClick()}>
-            <Icon name="ellipsis vertical" />
+            {/* <Icon name="ellipsis vertical" /> */}
+            <Image src={more} size="mini" />
           </Button>
           {displayOptions && <Options taskId={task.id} />}
         </Item.Extra>

@@ -8,6 +8,10 @@
   &:not(:first-child) {
     margin-top: 20px;
   }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .description {
@@ -25,7 +29,12 @@
   .ui.basic.grey.button {
     box-shadow: none !important;
     position: absolute;
-    top: 0;
+    top: -12px;
     right: 0;
+    padding-right: 0;
+
+    .ui.mini.image {
+      width: 22px;
+    }
   }
 }
