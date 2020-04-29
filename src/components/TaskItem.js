@@ -8,7 +8,7 @@ import "./TaskItem.scss";
 import moment from "moment";
 import more from "../images/More.svg";
 
-const TaskItem = ({ task, displayOptions, dispatch }) => {
+const TaskItem = ({ task, displayOptions, optionsTaskId, dispatch }) => {
   function handleClick() {
     !displayOptions ? dispatch(showOptions(task.id)) : dispatch(hideOptions());
   }
@@ -30,7 +30,9 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
           <Button basic color="grey" onClick={() => handleClick()}>
             <Image src={more} size="mini" />
           </Button>
-          {displayOptions && <Options />}
+          {displayOptions && optionsTaskId === task.id && (
+            <Options key={task.id} />
+          )}
         </Item.Extra>
       </Item.Content>
     </Item>
@@ -40,6 +42,7 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
 const mapStateToProps = (state) => {
   return {
     displayOptions: state.options.showOptions,
+    optionsTaskId: state.options.itemId,
   };
 };
 
@@ -50,6 +53,7 @@ TaskItem.propTypes = {
     assignee: PropTypes.string,
   }),
   displayOptions: PropTypes.bool.isRequired,
+  optionsTaskId: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(TaskItem);

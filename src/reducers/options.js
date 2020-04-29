@@ -16,6 +16,7 @@ const options = (state = initialState, action) => {
       return {
         ...state,
         showOptions: action.showOptions,
+        itemId: "",
       };
 
     default:
