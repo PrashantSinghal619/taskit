@@ -30,7 +30,7 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
           <Button basic color="grey" onClick={() => handleClick()}>
             <Image src={more} size="mini" />
           </Button>
-          {displayOptions && <Options taskId={task.id} />}
+          {displayOptions && <Options />}
         </Item.Extra>
       </Item.Content>
     </Item>

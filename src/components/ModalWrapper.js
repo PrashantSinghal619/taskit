@@ -67,6 +67,11 @@ class ModalWrapper extends Component {
     }
   }
 
+  // Remove validation class on modal hide
+  removeValidationClass() {
+    this.setState((prevState) => ({ ...prevState, validationClass: "" }));
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -84,19 +89,20 @@ class ModalWrapper extends Component {
 
       if (this.props.actionType === "add") {
         this.props.dispatch(
-          addTask(this.inputRef.value, this.assigneeInputRef.value)
+          addTask(this.inputRef.value.trim(), this.assigneeInputRef.value)
         );
       } else if (this.props.actionType === "edit") {
         this.props.dispatch(
           editTask(
             this.props.itemId,
-            this.inputRef.value,
+            this.inputRef.value.trim(),
             this.assigneeInputRef.value
           )
         );
       }
     }
 
+    this.removeValidationClass();
     this.props.dispatch(hideModal());
   }
 
@@ -108,7 +114,10 @@ class ModalWrapper extends Component {
           closeOnEscape={false}
           closeOnDimmerClick={false}
           open={this.props.showModal}
-          onClose={() => this.props.dispatch(this.hideModal())}
+          onClose={() =>
+            this.props.dispatch(this.hideModal()) &&
+            this.removeValidationClass()
+          }
         >
           <Modal.Content>
             <Modal.Description>
