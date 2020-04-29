@@ -20,6 +20,34 @@ class ModalWrapper extends Component {
       { key: "3", text: "Donna", value: "donna" },
     ];
   }
+
+  inputRef = null; // To reference task input textarea
+  assigneeInputRef = null; // To reference assignee select field
+
+  UNSAFE_componentWillMount() {
+    if (this.props.actionType) {
+      this.setState({
+        title:
+          this.props.actionType === "add"
+            ? "Add Task"
+            : this.props.actionType === "edit"
+            ? "Edit Task"
+            : "Delete Task",
+        buttonText:
+          this.props.actionType === "add"
+            ? "Create"
+            : this.props.actionType === "edit"
+            ? "Update"
+            : "Delete",
+      });
+    }
+  }
+
+  componentDidMount() {
+    // Focus textarea field by default
+    !!this.inputRef && this.inputRef.focus();
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.actionType !== this.props.actionType) {
       this.setState({
@@ -38,9 +66,6 @@ class ModalWrapper extends Component {
       });
     }
   }
-
-  inputRef = null;
-  assigneeInputRef = null;
 
   handleSubmit(e) {
     e.preventDefault();

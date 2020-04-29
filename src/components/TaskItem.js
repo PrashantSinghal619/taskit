@@ -28,7 +28,6 @@ const TaskItem = ({ task, displayOptions, dispatch }) => {
         <Item.Extra className="task-created-date">{dateCreated}</Item.Extra>
         <Item.Extra>
           <Button basic color="grey" onClick={() => handleClick()}>
-            {/* <Icon name="ellipsis vertical" /> */}
             <Image src={more} size="mini" />
           </Button>
           {displayOptions && <Options taskId={task.id} />}

@@ -14,9 +14,16 @@ class TaskList extends Component {
     };
   }
 
+  UNSAFE_componentWillMount() {
+    // If there is any persisted data present in store, show the list
+    this.props.tasks.length !== 0 && this.setState({ isListEmpty: false });
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      this.props.tasks.length !== 0 && this.setState({ isListEmpty: false });
+      this.props.tasks.length !== 0
+        ? this.setState({ isListEmpty: false })
+        : this.setState({ isListEmpty: true });
     }
   }
 
