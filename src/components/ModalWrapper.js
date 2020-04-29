@@ -136,6 +136,11 @@ class ModalWrapper extends Component {
                       defaultValue={this.props.currentTaskText}
                       className={this.state.validationClass}
                     />
+                    <div
+                      className={`error-massage ${this.state.validationClass}`}
+                    >
+                      This field is required to proceed
+                    </div>
                   </div>
                   <div className="field-set">
                     <label htmlFor="assignee-select">Assign To</label>
